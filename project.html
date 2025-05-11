@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .feedback-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #5a2a83;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #5a2a83;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #7a3cc9;
+    }
+
+    .message {
+      margin-top: 15px;
+      color: green;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="feedback-container">
+    <h2>Give Your Feedback</h2>
+    <form id="feedbackForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" required>
+
+      <label for="rating">Rate Our Website</label>
+      <select id="rating" required>
+        <option value="">--Select--</option>
+        <option value="5">Excellent (5⭐)</option>
+        <option value="4">Very Good (4⭐)</option>
+        <option value="3">Good (3⭐)</option>
+        <option value="2">Fair (2⭐)</option>
+        <option value="1">Poor (1⭐)</option>
+      </select>
+
+      <label for="comments">Your Comments</label>
+      <textarea id="comments" rows="4" required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+      <div class="message" id="feedbackMessage"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const rating = document.getElementById("rating").value;
+      const comments = document.getElementById("comments").value.trim();
+
+      if (name && email && rating && comments) {
+        document.getElementById("feedbackMessage").textContent = "Thank you, " + name + "! Your feedback has been submitted.";
+        document.getElementById("feedbackForm").reset();
+      } else {
+        document.getElementById("feedbackMessage").textContent = "Please fill in all fields.";
+      }
+    });
+  </script>
+
+</body>
+</html>
